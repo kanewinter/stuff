@@ -1,0 +1,33 @@
+Host 172.22.252.*
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa_provisioning
+  UserKnownHostsFile=/dev/null
+Host
+
+Host 58.246.0.*
+  User mcirt
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/id_rsa_provisioning
+  UserKnownHostsFile=/dev/null
+Host
+
+Host 10.1.0.*
+  User root
+  IdentityFile ~/.ssh/id_rsa_home.pub
+Host
+
+Host *.kville
+  User root
+  IdentityFile ~/.ssh/id_rsa_home.pub
+Host
+
+Host github.mandiant.com
+  User git
+  IdentityFile ~/.ssh/id_rsa.pub
+Host
+
+Host *
+  User nlewis
+  StrictHostKeyChecking no
+  GSSAPIDelegateCredentials yes
+Host

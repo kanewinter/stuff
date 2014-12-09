@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#restore -iaf <dumpfile.dmp>
+#creates a full dir tree to the restored file(s) rooted
+#wherever you run the command from so do not run from /
+
 DATESTAMP=`date +'%m%d%H%M'`
 DAY=`date +%a`
 

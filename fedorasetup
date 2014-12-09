@@ -1,0 +1,113 @@
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+
+vi /etc/yum.repos.d/skype.repo
+[skype]
+name=Skype Repository
+baseurl=http://download.skype.com/linux/repos/fedora/updates/i586/
+gpgkey=http://www.skype.com/products/skype/linux/rpm-public-key.asc
+enabled=1
+gpgcheck=0
+
+vi /etc/yum.repos.d/google.repo
+[google]
+name=Google - $basearch
+baseurl=http://dl.google.com/linux/rpm/stable/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+[google-testing]
+name=Google Testing - $basearch
+baseurl=http://dl.google.com/linux/rpm/testing/$basearch
+enabled=0
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+[google-earth]
+name=Google Earth $basearch
+baseurl=http://dl.google.com/linux/earth/rpm/stable/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+[google-chrome]
+name=Google Chrome $basearch
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+[Dropbox]
+name=Dropbox Repository
+baseurl=http://linux.dropbox.com/fedora/$releasever/
+gpgkey=https://linux.dropbox.com/fedora/rpm-public-key.asc
+
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY*
+
+
+
+
+
+yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm
+
+yum check-update
+
+yum install -y virt-manager libvirt qemu-kvm-tools qemu-kvm bridge-utils xorg-x11-font* xorg-x11-server-Xorg xorg-x11-drivers xorg-x11-server-utils xorg-x11-utils xorg-x11-xauth xorg-x11-xinit xterm tigervnc tigervnc-server clusterssh pinta gimp thunderbird flash-plugin libreoffice vlc google-chrome-stable keepassx skype alsa-lib.i686 libXv.i686 libXScrnSaver.i686 qt.i686 qt-x11.i686 dump wget openssh-askpass.x86_64 rdesktop nmap nautilus-dropbox xclip tcpdump git brasero thttpd sshpass freeipa-client xawtv gnome-media-apps terminator
+
+Wireless Driver is laptop specific!!!!
+yum install kmod-wl.x86_64
+
+Video Driver
+yum install kmod-nvidia xorg-x11-drv-nvidia-libs
+## Backup old initramfs nouveau image ##
+mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+## Create new initramfs image ##
+dracut /boot/initramfs-$(uname -r).img $(uname -r)
+
+install java from oracle website!
+
+MCIRT CA
+http://mrauthority.mcirt.mandiant.com/
+
+Add search DOMAIN:
+in /etc/dhcp/dhclient.conf
+append domain-search "mcirt.mandiant.com";
+
+Email:
+  IMAP
+    Mandiant
+      Host: owa.mandiant.com
+      Port: 993
+      User: John.Place
+      Method: NTLM
+      Security: SSL/TLS
+  SMTP
+    Mandiant
+      Host: exchsmtp.mandiant.com
+      Port: 587
+      User: John.Place
+      Method: Normal password
+      Security: STARTTLS
+
+Calendar:
+install http://www.1st-setup.nl/wordpress/?page_id=551
+then lightning
+then follow picture
+
+Printer:
+
+system-config-printer
+
+
+
+WaveWall
+
+  URI   -> lpd://172.24.2.13/lpr
+
+  Model -> Generic PostScript Printer
+
+IT Printer
+
+  URI   -> lpd://172.24.2.14/lpr
+
+  Model -> Generic PostScript Printer

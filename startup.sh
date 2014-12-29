@@ -2,8 +2,6 @@
 echo " %%%%%%%%% Login !!!!!!!"
 kinit nlewis
 sleep 5
-sudo dropbox start
-sleep 5
 thunderbird > /tmp/kanethunderbird.log 2>&1 &
 firefox > /tmp/kanefirefox.log 2>&1 &
 skype > /tmp/kaneskype.log 2>&1 &

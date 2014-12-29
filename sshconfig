@@ -11,6 +11,16 @@ Host 58.246.0.*
   UserKnownHostsFile=/dev/null
 Host
 
+Host 172.22.40.*
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+Host
+
+Host 172.22.36.*
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+Host
+
 Host 10.1.0.*
   User root
   IdentityFile ~/.ssh/id_rsa_home.pub

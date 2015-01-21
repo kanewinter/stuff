@@ -1,8 +1,11 @@
 127.0.0.1		localhost.localdomain localhost
 ::1		localhost6.localdomain6 localhost6
-10.1.0.20	shehulk.kville
+localhost       nlewis
+10.1.0.10       foreman.kville
+10.1.0.21	shehulk.kville
 10.1.0.22       forge.kville
 10.1.0.23       postgres.kville
+10.1.0.24       puppet.kville
 10.1.0.25       nagios.kville
 10.1.0.6        beast.kville
 10.1.0.26       graphite.kville
@@ -10,3 +13,4 @@
 10.1.0.28 	oculus.kville
 10.1.0.29       logs.kville
 10.1.0.30 	web.kville
+192.168.124.19  archipel

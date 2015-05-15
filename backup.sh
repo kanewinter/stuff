@@ -1,5 +1,19 @@
 #!/bin/bash
 
+if [ ! -f /media/backup/backupdrivemounted ]; then
+    echo "Backup Drive Missing"
+    exit
+fi
+
+
+LOCKFILE=/home/kane/scripts/backup.lock
+if [ -e ${LOCKFILE} ] && kill -0 `cat ${LOCKFILE}`; then
+    echo "already running"
+    exit
+fi
+trap "rm -f ${LOCKFILE}; exit" INT TERM EXIT
+echo $$ > ${LOCKFILE}
+
 #restore -iaf <dumpfile.dmp>
 #creates a full dir tree to the restored file(s) rooted
 #wherever you run the command from so do not run from /
@@ -42,3 +56,7 @@ rm -f /media/backup/${NODENAME}.${DATESTAMP}-lvl-${LEVEL}.dmp
 CODE="$CODE + $?"
 printf "Backup\nCompleted\n`date`\nExit Code $CODE\n\n"
 #=============================================
+
+
+rm -f ${LOCKFILE}
+trap - INT TERM EXIT

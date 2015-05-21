@@ -40,4 +40,5 @@ Host *
   User nlewis
   StrictHostKeyChecking no
   GSSAPIDelegateCredentials yes
+  ServerAliveInterval 60
 Host

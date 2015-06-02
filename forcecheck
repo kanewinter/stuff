@@ -1,0 +1,10 @@
+#! /bin/sh
+
+LIST=( `cat "list" `)
+for i in "${LIST[@]}"
+do
+
+echo "["$(date +%s)"] SCHEDULE_FORCED_HOST_CHECK;"$i";"$(date +"%s+300" | bc -l) >> /var/spool/nagios/cmd/nagios.cmd
+
+done
+exit 0

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+LIST=( `cat "list" `)
+echo ${LIST[@]}
+for i in "${LIST[@]}"
+do
+
+echo $i
+
+mv /home/kane/homenet/WDLive/Pictures/import/$i /home/kane/homenet/WDLive/Pictures/import/failed/
+
+echo "\n\n"
+
+done
+exit 0

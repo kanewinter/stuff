@@ -1,0 +1,192 @@
+qemu          1.2.0        R  1.1 may work, but has broken virtioscsi
+
+ qemuimg                   R  >= 2.2.0 is required for virtv2v but   
+                               optional elsewhere                      
+
+ kernel        2.6.34       R  Make sure the following are enabled     
+                               compiled in or as a module:             
+                                 virtiopci                           
+                                 virtioserial                        
+                                 virtioblock                         
+                                 virtionet                           
+
+ supermin      5.1.0        R  This is required on all distros.        
+                               'supermin' is the new name for          
+                               'febootstrap'.                          
+                               For alternatives, see:                  
+                               libguestfs.org/download/binaries/appliance/
+
+ glibc                      R  We use various glibcisms.              
+                               Also glibc provides XDR, rpcgen.        
+
+ GCC or LLVM                R  We use __attribute__((cleanup)).        
+
+ Perl                       R  Various build and test programs need    
+                               Perl.  Not needed at runtime except if  
+                               you need to run a handful of virt*     
+                               tools that are still written in Perl.   
+
+ Pod::Man                   R  Part of Perl core.                      
+
+ Pod::Simple                R  Part of Perl core.                      
+
+ OCaml                     R/O Required if compiling from git.         
+                               Optional if compiling from tarball.     
+                               To build generated files and OCaml bindings.
+
+ findlib                   R/O Required if compiling from git.         
+                               Optional if compiling from tarball.     
+                               To build generated files and OCaml bindings.
+
+ autotools                 R/O Required if compiling from git.         
+                               Optional if compiling from tarball.     
+                               Autotoolsbased build system.           
+
+ cpio                       R                                          
+
+ gperf                      R                                          
+
+ flex                       R  flex & bison are required for virt     
+ builder.  We could make these           
+ bison                      R  optional but automakes makes it hard.   
+
+ PCRE                       R  Perlcompatible Regular Expression lib. 
+
+ genisoimage                R  mkisofs may work.                       
+
+ libxml2                    R  Popular XML library.                    
+
+ augeas        1.0.0        R                                          
+
+ xz                         R  Used to compress disk images.           
+                               Used by virtbuilder for compression.   
+
+ po4a                      R/O Required if compiling from git.         
+                               Optional if compiling from tarball.     
+                               For localizing man pages.               
+
+ hivex         1.2.7       R/O Require if compiling from git.          
+                               Windows Registry hive parser.           
+
+ libmagic                   O  The library used by the 'file' command. 
+
+ libvirt                    O  >= 0.10.2 is needed if you want to use  
+                               libvirt to manage transient VMs.        
+
+ xmllint                    O  Part of libxml2.  Used for tests only.  
+
+ libconfig                  O  Used to parse libguestfs's own config   
+                               files eg. /etc/libguestfstools.conf.   
+
+ libselinux                 O  Used by the libvirt backend to securely 
+                               confine the appliance (sVirt).          
+
+ db utils                   O  db_dump, db_load etc.  Usually found in 
+                               a package called dbutils, db4utils,   
+                               db4.Xutils, Berkeley DB utils, etc.    
+
+ systemtap                  O  For userspace probes.                   
+
+ readline                   O  For nicer command line in guestfish.    
+
+ acl                        O  Library (libacl) and programs for       
+                               handling POSIX ACLs.                    
+
+ libcap                     O  Library (libcap) and programs for       
+                               handling Linux capabilities.            
+
+ libldm                     O  Library (libldm) and 'ldmtool' for      
+                               handling Windows Dynamic Disks.         
+
+ sdjournal                 O  systemd journal library                 
+
+ yajl          2.0.4        O  JSON parser for parsing output of       
+                               ldmtool and qemuimg info commands.     
+
+ gdisk                      O  GPT disk support.                       
+
+ netpbm                     O  Render icons from guests.               
+
+ icoutils                   O  Render icons from Windows guests.       
+
+ Expect                     O  Perl module used to test virtrescue.   
+
+ FUSE                       O  fusermount, libfuse, and kernel module  
+                               are all needed if you want guestmount   
+                               and/or 'mountlocal' support.           
+
+ static glibc               O  Used for testing only.                  
+
+ qemunbd                   O  Used for testing only.                  
+
+ uml_mkcow                  O  For the UML backend.                    
+
+ curl                       O  Used by virtbuilder for downloads      
+
+ gpg                        O  Used by virtbuilder for digital        
+                               signatures                              
+
+ liblzma                    O  Can be used by virtbuilder for fast    
+                               uncompression of templates.             
+
+ gtk2                       O  Used by virtp2v user interface.        
+
+ zip, unzip                 O  Used by virtv2v for OVA files.         
+
+ pythonevtx                O  Used by virtlog to parse Windows       
+                               Event Log files.                        
+
+ ocamlgettext              O  For localizing OCaml virt* tools.      
+
+ Python        2.2          O  For the Python bindings.                
+
+ Ruby                       O  >= 1.9 is better than 1.8.              
+
+ rake                       O  For the Ruby bindings.                  
+
+ rubygemminitest            O  For the Ruby bindings.                  
+
+ Java          1.6          O  Java  JNI  jpackageutils are needed  
+                               for the Java bindings.                  
+
+ GHC                        O  For the Haskell bindings.               
+
+ PHP                        O  For the PHP bindings.                   
+
+ phpize                     O  For the PHP bindings.                   
+
+ glib2                      O  For the GObject bindings.               
+
+ gobjectintrospection       O  For the GObject bindings.               
+
+ gjs                        O  For testing the GObject bindings.       
+
+ LUA                        O  For the LUA bindings.                   
+
+ Erlang                     O  For the Erlang bindings.                
+
+ erl_interface              O  For the Erlang bindings.                
+
+ golang        1.1.1        O  For the Go bindings.                    
+
+ valgrind                   O  For testing for memory problems.        
+
+ Sys::Virt                  O  Perl bindings for libvirt.              
+
+ libvirtpython              O  For testing Python libvirt/libguestfs   
+                               interactions.                           
+
+ Win::Hivex                 O  Perl bindings for hivex.                
+
+ Pod::Usage                 O  Perl module used by tests.              
+
+ Test::More                 O  Perl module used by tests.              
+
+ perllibintl               O  Perl module for localization.           
+
+ bashcompletion             O  For tabcompletion of commands in bash. 
+
+ ocamlounit   2.0.0        O  For the tests of the common OCaml       
+                               modules.                                
+
+ ocamllibvirt

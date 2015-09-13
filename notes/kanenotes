@@ -11,8 +11,13 @@ openconnect --csd-user=kane --no-xmlpost https://fevpn.fireeye.com
 
 grep package basenode.pp | sed -e 's/":.*$//' -e 's/.*"//' | xargs
 
-check_postgres
-yum install check_postgres perl-Time-HiRes
+rsync -avhiz --progress --delete --delete-after --delete-excluded --force shehulk.kville:/data/CarMusic/* /run/media/kane/MUSIC/
+
+ssh -L 172.30.8.1:500:
+172.30.8.1 -p 2222
+rsync -aHAXxv --numeric-ids --partial --progress -e "ssh -T -c arcfour -o Compression=no -x" user@<source>:<source_dir> <dest_dir>
+rsync -aHAXxv --numeric-ids --progress -e "ssh -p 2222 -T -c arcfour -o Compression=no -x"
+
 
 https://github.mandiant.com/HTAP/seasick/blob/develop/vagrant/vagrant.pp
 
@@ -320,3 +325,13 @@ sed -i s/this-vm/that-vm /tmp/that-vm.xml
 virsh define /tmp/that-vm.xml
 virsh start this-vm
 virsh start that-vm
+
+package { 'unsigned-package':
+  ensure          => latest,
+  install_options => ['--nogpgcheck'],
+}
+
+
+[1:01:38 PM] Brent Barger:  virsh pool-start default
+[1:02:03 PM] Brent Barger:  virsh pool-autostart default
+

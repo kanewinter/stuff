@@ -1,0 +1,168 @@
+# begin crush map
+tunable choose_local_tries 0
+tunable choose_local_fallback_tries 0
+tunable choose_total_tries 50
+tunable chooseleaf_descend_once 1
+tunable straw_calc_version 1
+
+# devices
+device 0 osd.0
+device 1 osd.1
+device 2 osd.2
+device 3 osd.3
+device 4 osd.4
+device 5 osd.5
+device 6 osd.6
+device 7 osd.7
+device 8 osd.8
+device 9 osd.9
+device 10 osd.10
+device 11 osd.11
+device 12 osd.12
+device 13 osd.13
+device 14 osd.14
+device 15 osd.15
+device 16 osd.16
+device 17 osd.17
+device 18 osd.18
+device 19 osd.19
+device 20 osd.20
+device 21 osd.21
+device 22 osd.22
+device 23 osd.23
+device 24 osd.24
+device 25 osd.25
+device 26 osd.26
+device 27 osd.27
+device 28 osd.28
+device 29 osd.29
+
+
+# types
+type 0 osd
+type 1 host
+type 2 chassis
+type 3 pdu
+type 4 rack
+type 5 row
+type 6 pod
+type 7 room
+type 8 datacenter
+type 9 region
+type 10 root
+
+# buckets
+host ceph1 {
+        id -3           # do not change unnecessarily
+        # weight 40
+        alg straw
+        hash 0  # rjenkins1
+        item osd.10 weight 4
+        item osd.11 weight 4
+        item osd.12 weight 4
+        item osd.13 weight 4
+        item osd.14 weight 4
+        item osd.15 weight 4
+        item osd.16 weight 4
+        item osd.17 weight 4
+        item osd.18 weight 4
+        item osd.19 weight 4
+}
+
+host ceph2 {
+	id -2		# do not change unnecessarily
+	# weight 40
+	alg straw
+	hash 0	# rjenkins1
+	item osd.0 weight 4
+	item osd.1 weight 4
+	item osd.2 weight 4
+	item osd.3 weight 4
+	item osd.4 weight 4
+	item osd.5 weight 4
+	item osd.6 weight 4
+	item osd.7 weight 4
+	item osd.8 weight 4
+	item osd.9 weight 4
+}
+
+host ceph3 {
+        id -6           # do not change unnecessarily
+        # weight 40
+        alg straw
+        hash 0  # rjenkins1
+        item osd.20 weight 4
+        item osd.21 weight 4
+        item osd.22 weight 4
+        item osd.23 weight 4
+        item osd.24 weight 4
+        item osd.25 weight 4
+        item osd.26 weight 4
+        item osd.27 weight 4
+        item osd.28 weight 4
+        item osd.29 weight 4
+}
+
+rack rack1 {
+        id -4           # do not change unnecessarily
+        # weight 40
+        alg straw
+        hash 0  # rjenkins1
+        item ceph1 weight 40
+}
+rack rack2 {
+	id -5		# do not change unnecessarily
+	# weight 40
+	alg straw
+	hash 0	# rjenkins1
+	item ceph2 weight 40
+}
+rack rack3 {
+        id -7           # do not change unnecessarily
+        # weight 40
+        alg straw
+        hash 0  # rjenkins1
+        item ceph3 weight 40
+}
+
+root default {
+	id -1		# do not change unnecessarily
+	# weight 120
+	alg straw
+	hash 0	# rjenkins1
+	item rack2 weight 40
+	item rack1 weight 40
+	item rack3 weight 40
+}
+
+# rules
+rule replicated_ruleset {
+	ruleset 0
+	type replicated
+	min_size 2
+	max_size 10
+	step take default
+	step chooseleaf firstn 0 type rack
+	step emit
+}
+rule racky {
+	ruleset 1
+	type replicated
+	min_size 2
+	max_size 10
+	step take default
+	step chooseleaf firstn 0 type rack
+	step emit
+}
+
+rule libvirt {
+              ruleset 2
+              type replicated
+              min_size 2
+              max_size 10
+              step take default
+              step chooseleaf firstn 0 type rack
+              step emit
+      }
+
+# end crush map

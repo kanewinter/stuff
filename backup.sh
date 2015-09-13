@@ -26,10 +26,12 @@ echo "rsyncing VMs"
 echo `date`
 rsync -av /var/lib/libvirt/images/* /media/backup/vms/
 #rsync -av /home/kane /media/backup/kane
-rsync -av --delete-after --delete-excluded --force --exclude 'kane/.cache' --exclude 'kane/.thunderbird' --exclude 'kane/Dropbox' --exclude 'kane/ISO' /home/kane /media/backup/kane
+rsync -av --delete-after --delete-excluded --force --exclude 'kane/.cache' --exclude 'kane/.config/google-chrome' --exclude 'kane/.Skype' --exclude 'kane/.thunderbird' --exclude 'kane/Dropbox' --exclude 'kane/.dropbox-dist' --exclude 'kane/.mozilla' --exclude 'kane/.dropbox' --exclude 'kane/ISO' /home/kane /media/backup/kane
 rpm -qa > /media/backup/packages/packages.$DAY
 ls /etc/yum.repos.d/ > /media/backup/repos/repos.$DAY
 crontab -l > /media/backup/cron/cron.$DAY
+echo '/n'
+echo 'rsyncs and copy jobs done. Starting Dump!'
 echo `date`
 
 #==========================================

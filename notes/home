@@ -1,1 +1,5 @@
-foreman forge graphite postgres skyline web mail nagios splunk
+#home notes
+
+foreman.kville forge.kville graphite.kville postgres.kville skyline.kville web.kville mail.kville nagios.kville logs.kville
+
+screen rsync -avvvXxzih --progress --partial --exclude 'CarMusic' --exclude 'extbackup' --exclude 'lost+found' --exclude 'USB' --exclude 'Dropbox' --exclude 'WDLive' --exclude 'WDLive2' /data/* /data/extbackup/

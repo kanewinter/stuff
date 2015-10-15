@@ -281,4 +281,71 @@ assign DHCP IP to br206
 add "if I can't resolve myself do nsupdate" to puppet manifest
 use kvm01.ceph in configs
 
+sudo -u cephuser ceph-deploy --username cephuser disk list
 
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdc
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdd
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sde
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdf
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdg
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdh
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdi
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdj
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdk
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdl
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdm
+sudo -u cephuser ceph-deploy --username cephuser disk zap kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdn
+
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sde:sdc
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdf:sdc
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdg:sdc
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdh:sdc
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdi:sdc
+
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdj:sdd
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdk:sdd
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdl:sdd
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdm:sdd
+sudo -u cephuser ceph-deploy --username cephuser osd prepare kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdn:sdd
+
+
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sde1:sdc1
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdf1:sdc2
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdg1:sdc3
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdh1:sdc4
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdi1:sdc5
+
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdj1:sdd1
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdk1:sdd2
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdl1:sdd3
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdm1:sdd4
+sudo -u cephuser ceph-deploy --username cephuser osd activate kvm02.ceph.mgmt.sin1.prod.md.fireeye.com:sdn1:sdd5
+
+
+
+for i in {1..500}; do dd if=/dev/urandom bs=1024 count=102400 of=file$i; done
+~.
+mount -t fuse.ceph conf=/home/kane/ceph/ceph.conf /media/ceph/
+
+ceph pg dump_stuck [unclean|inactive|stale|undersized|degraded]
+ceph pg dump
+ceph pg dump -o {filename} --format=json
+ceph pg {poolnum}.{pg-id} query
+ceph pg force_create_pg 
+
+possible tuning options
+osd op threads = 8
+osd max backfills = 1
+osd recovery max active = 1
+filestore max sync interval = 50
+filestore min sync interval = 20
+filestore queue max ops = 2000
+filestore queue max bytes = 536870912
+filestore queue committing max ops = 2000
+filestore queue committing max bytes = 536870912
+
+osd recovery delay start
+
+osd recovery op priority
+
+osd op threads default is 2

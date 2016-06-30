@@ -1,5 +1,0 @@
-#home notes
-
-foreman.kville forge.kville graphite.kville postgres.kville skyline.kville web.kville mail.kville nagios.kville logs.kville
-
-screen rsync -avvvXxzih --log-file=/root/extbackup-`date +"%m%d%H%M"` --progress --partial --delete-excluded --exclude 'CarMusic' --exclude 'extbackup' --exclude 'lost+found' --exclude 'USB' --exclude 'Dropbox' --exclude 'WDLive' --exclude 'storage/Backup/Mandiant/laptop.12012014/vms' --exclude 'storage/Backup/Mandiant/laptop.12012014/kane' --exclude 'WDLive2' /data/* /data/extbackup/
